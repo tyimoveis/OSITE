@@ -1,54 +1,219 @@
-// Dados fictícios dos imóveis (10 por categoria, 50 no total)
-const properties = {
-  apartamentos: [
-    { id: 1, title: "Apartamento 2 Quartos no Centro", price: 350000, type: "venda", neighborhood: "Centro", description: "Apartamento ensolarado com 2 quartos e 1 vaga.", images: ["https://via.placeholder.com/400?text=Apartamento1-1", "https://via.placeholder.com/400?text=Apartamento1-2"] },
-    { id: 2, title: "Apartamento 3 Quartos na Gleba Palhano", price: 650000, type: "venda", neighborhood: "Gleba Palhano", description: "Moderno com varanda gourmet.", images: ["https://via.placeholder.com/400?text=Apartamento2-1", "https://via.placeholder.com/400?text=Apartamento2-2"] },
-    { id: 3, title: "Apartamento 1 Quarto no Londrilar", price: 1200, type: "aluguel", neighborhood: "Jardim Londrilar", description: "Compacto e ideal para solteiros.", images: ["https://via.placeholder.com/400?text=Apartamento3-1", "https://via.placeholder.com/400?text=Apartamento3-2"] },
-    { id: 4, title: "Apartamento Luxo no Aurora", price: 850000, type: "venda", neighborhood: "Aurora", description: "Vista privilegiada e acabamento premium.", images: ["https://via.placeholder.com/400?text=Apartamento4-1", "https://via.placeholder.com/400?text=Apartamento4-2"] },
-    { id: 5, title: "Apartamento 2 Quartos no Quebec", price: 2000, type: "aluguel", neighborhood: "Jardim Quebec", description: "Aconchegante com área de lazer.", images: ["https://via.placeholder.com/400?text=Apartamento5-1", "https://via.placeholder.com/400?text=Apartamento5-2"] },
-    { id: 6, title: "Apartamento 3 Quartos no Higienópolis", price: 550000, type: "venda", neighborhood: "Jardim Higienópolis", description: "Espaçoso com 2 vagas.", images: ["https://via.placeholder.com/400?text=Apartamento6-1", "https://via.placeholder.com/400?text=Apartamento6-2"] },
-    { id: 7, title: "Apartamento 1 Quarto no Centro", price: 1500, type: "aluguel", neighborhood: "Centro", description: "Perto de comércios e serviços.", images: ["https://via.placeholder.com/400?text=Apartamento7-1", "https://via.placeholder.com/400?text=Apartamento7-2"] },
-    { id: 8, title: "Apartamento 2 Quartos na Palhano", price: 400000, type: "venda", neighborhood: "Gleba Palhano", description: "Bem localizado com sacada.", images: ["https://via.placeholder.com/400?text=Apartamento8-1", "https://via.placeholder.com/400?text=Apartamento8-2"] },
-    { id: 9, title: "Apartamento 2 Quartos no Aurora", price: 1800, type: "aluguel", neighborhood: "Aurora", description: "Moderno e mobiliado.", images: ["https://via.placeholder.com/400?text=Apartamento9-1", "https://via.placeholder.com/400?text=Apartamento9-2"] },
-    { id: 10, title: "Apartamento 3 Quartos no Londrilar", price: 700000, type: "venda", neighborhood: "Jardim Londrilar", description: "Amplo com área de lazer completa.", images: ["https://via.placeholder.com/400?text=Apartamento10-1", "https://via.placeholder.com/400?text=Apartamento10-2"] }
-  ],
-  casas: [
-    { id: 11, title: "Casa 3 Quartos na Gleba Palhano", price: 3500, type: "aluguel", neighborhood: "Gleba Palhano", description: "Casa espaçosa com quintal.", images: ["https://via.placeholder.com/400?text=Casa1-1", "https://via.placeholder.com/400?text=Casa1-2"] },
-    { id: 12, title: "Casa 4 Quartos no Higienópolis", price: 950000, type: "venda", neighborhood: "Jardim Higienópolis", description: "Casa ampla e moderna.", images: ["https://via.placeholder.com/400?text=Casa2-1", "https://via.placeholder.com/400?text=Casa2-2"] },
-    { id: 13, title: "Casa 2 Quartos no Centro", price: 1800, type: "aluguel", neighborhood: "Centro", description: "Ideal para famílias pequenas.", images: ["https://via.placeholder.com/400?text=Casa3-1", "https://via.placeholder.com/400?text=Casa3-2"] },
-    { id: 14, title: "Casa 3 Quartos no Quebec", price: 600000, type: "venda", neighborhood: "Jardim Quebec", description: "Casa com área externa.", images: ["https://via.placeholder.com/400?text=Casa4-1", "https://via.placeholder.com/400?text=Casa4-2"] },
-    { id: 15, title: "Casa 2 Quartos no Londrilar", price: 1500, type: "aluguel", neighborhood: "Jardim Londrilar", description: "Confortável e acessível.", images: ["https://via.placeholder.com/400?text=Casa5-1", "https://via.placeholder.com/400?text=Casa5-2"] },
-    { id: 16, title: "Casa 4 Quartos no Aurora", price: 1200000, type: "venda", neighborhood: "Aurora", description: "Luxuosa com piscina.", images: ["https://via.placeholder.com/400?text=Casa6-1", "https://via.placeholder.com/400?text=Casa6-2"] },
-    { id: 17, title: "Casa 3 Quartos no Centro", price: 2500, type: "aluguel", neighborhood: "Centro", description: "Próxima a comércios.", images: ["https://via.placeholder.com/400?text=Casa7-1", "https://via.placeholder.com/400?text=Casa7-2"] },
-    { id: 18, title: "Casa 3 Quartos na Palhano", price: 750000, type: "venda", neighborhood: "Gleba Palhano", description: "Moderna com jardim.", images: ["https://via.placeholder.com/400?text=Casa8-1", "https://via.placeholder.com/400?text=Casa8-2"] },
-    { id: 19, title: "Casa 2 Quartos no Quebec", price: 2000, type: "aluguel", neighborhood: "Jardim Quebec", description: "Aconchegante com churrasqueira.", images: ["https://via.placeholder.com/400?text=Casa9-1", "https://via.placeholder.com/400?text=Casa9-2"] },
-    { id: 20, title: "Casa 5 Quartos no Higienópolis", price: 1500000, type: "venda", neighborhood: "Jardim Higienópolis", description: "Mansão com amplo terreno.", images: ["https://via.placeholder.com/400?text=Casa10-1", "https://via.placeholder.com/400?text=Casa10-2"] }
-  ],
-  comerciais: [
-    { id: 21, title: "Sala Comercial no Centro", price: 800000, type: "venda", neighborhood: "Centro", description: "Espaço de 100m² em localização privilegiada.", images: ["https://via.placeholder.com/400?text=Comercial1-1", "https://via.placeholder.com/400?text=Comercial1-2"] },
-    { id: 22, title: "Loja na Gleba Palhano", price: 5000, type: "aluguel", neighborhood: "Gleba Palhano", description: "Ponto comercial de alto fluxo.", images: ["https://via.placeholder.com/400?text=Comercial2-1", "https://via.placeholder.com/400?text=Comercial2-2"] },
-    { id: 23, title: "Escritório no Aurora", price: 450000, type: "venda", neighborhood: "Aurora", description: "Ideal para consultórios.", images: ["https://via.placeholder.com/400?text=Comercial3-1", "https://via.placeholder.com/400?text=Comercial3-2"] },
-    { id: 24, title: "Ponto Comercial no Quebec", price: 3000, type: "aluguel", neighborhood: "Jardim Quebec", description: "Loja com vitrine ampla.", images: ["https://via.placeholder.com/400?text=Comercial4-1", "https://via.placeholder.com/400?text=Comercial4-2"] },
-    { id: 25, title: "Sala Comercial no Londrilar", price: 250000, type: "venda", neighborhood: "Jardim Londrilar", description: "Ótima oportunidade para negócios.", images: ["https://via.placeholder.com/400?text=Comercial5-1", "https://via.placeholder.com/400?text=Comercial5-2"] },
-    { id: 26, title: "Loja no Centro", price: 6000, type: "aluguel", neighborhood: "Centro", description: "Ponto comercial central.", images: ["https://via.placeholder.com/400?text=Comercial6-1", "https://via.placeholder.com/400?text=Comercial6-2"] },
-    { id: 27, title: "Escritório na Palhano", price: 700000, type: "venda", neighborhood: "Gleba Palhano", description: "Moderno com vista.", images: ["https://via.placeholder.com/400?text=Comercial7-1", "https://via.placeholder.com/400?text=Comercial7-2"] },
-    { id: 28, title: "Sala Comercial no Higienópolis", price: 3500, type: "aluguel", neighborhood: "Jardim Higienópolis", description: "Espaço para escritórios.", images: ["https://via.placeholder.com/400?text=Comercial8-1", "https://via.placeholder.com/400?text=Comercial8-2"] },
-    { id: 29, title: "Loja no Aurora", price: 550000, type: "venda", neighborhood: "Aurora", description: "Ideal para varejo.", images: ["https://via.placeholder.com/400?text=Comercial9-1", "https://via.placeholder.com/400?text=Comercial9-2"] },
-    { id: 30, title: "Ponto Comercial no Londrilar", price: 4000, type: "aluguel", neighborhood: "Jardim Londrilar", description: "Local com grande visibilidade.", images: ["https://via.placeholder.com/400?text=Comercial10-1", "https://via.placeholder.com/400?text=Comercial10-2"] }
-  ],
-  terrenos: [
-    { id: 31, title: "Terreno no Higienópolis", price: 250000, type: "venda", neighborhood: "Jardim Higienópolis", description: "300m² pronto para construir.", images: ["https://via.placeholder.com/400?text=Terreno1-1", "https://via.placeholder.com/400?text=Terreno1-2"] },
-    { id: 32, title: "Terreno na Gleba Palhano", price: 450000, type: "venda", neighborhood: "Gleba Palhano", description: "Localização premium.", images: ["https://via.placeholder.com/400?text=Terreno2-1", "https://via.placeholder.com/400?text=Terreno2-2"] },
-    { id: 33, title: "Terreno no Quebec", price: 180000, type: "venda", neighborhood: "Jardim Quebec", description: "Ideal para residência.", images: ["https://via.placeholder.com/400?text=Terreno3-1", "https://via.placeholder.com/400?text=Terreno3-2"] },
-    { id: 34, title: "Terreno no Centro", price: 600000, type: "venda", neighborhood: "Centro", description: "Para fins comerciais.", images: ["https://via.placeholder.com/400?text=Terreno4-1", "https://via.placeholder.com/400?text=Terreno4-2"] },
-    { id: 35, title: "Terreno no Londrilar", price: 150000, type: "venda", neighborhood: "Jardim Londrilar", description: "Ótimo custo-benefício.", images: ["https://via.placeholder.com/400?text=Terreno5-1", "https://via.placeholder.com/400?text=Terreno5-2"] },
-    { id: 36, title: "Terreno no Aurora", price: 300000, type: "venda", neighborhood: "Aurora", description: "Terreno plano de 400m².", images: ["https://via.placeholder.com/400?text=Terreno6-1", "https://via.placeholder.com/400?text=Terreno6-2"] },
-    { id: 37, title: "Terreno na Palhano", price: 500000, type: "venda", neighborhood: "Gleba Palhano", description: "Perfeito para condomínio.", images: ["https://via.placeholder.com/400?text=Terreno7-1", "https://via.placeholder.com/400?text=Terreno7-2"] },
-    { id: 38, title: "Terreno no Higienópolis", price: 200000, type: "venda", neighborhood: "Jardim Higienópolis", description: "Ótima localização.", images: ["https://via.placeholder.com/400?text=Terreno8-1", "https://via.placeholder.com/400?text=Terreno8-2"] },
-    { id: 39, title: "Terreno no Quebec", price: 220000, type: "venda", neighborhood: "Jardim Quebec", description: "Ideal para casa térrea.", images: ["https://via.placeholder.com/400?text=Terreno9-1", "https://via.placeholder.com/400?text=Terreno9-2"] },
-    { id: 40, title: "Terreno no Centro", price: 700000, type: "venda", neighborhood: "Centro", description: "Terreno comercial amplo.", images: ["https://via.placeholder.com/400?text=Terreno10-1", "https://via.placeholder.com/400?text=Terreno10-2"] }
-  ],
-  chacaras: [
-    { id: 41, title: "Chácara em Maringá", price: 500000, type: "venda", neighborhood: "Maringá", description: "Área verde com casa e pomar.", images: ["https://via.placeholder.com/400?text=Chacara1-1", "https://via.placeholder.com/400?text=Chacara1-2"] },
-    { id: 42, title: "Chácara em Cambé", price: 2500, type: "aluguel", neighborhood: "Cambé", description: "Ideal para eventos e lazer.", images: ["https://via.placeholder.com/400?text=Chacara2-1", "https://via.placeholder.com/400?text=Chacara2-2"] },
-    {
+// Função para formatar preço
+function formatPrice(price, type) {
+  if (type === 'aluguel') {
+    return `R$ ${price.toLocaleString('pt-BR')}/mês`;
+  }
+  return `R$ ${price.toLocaleString('pt-BR')}`;
+}
+
+// Função para renderizar cards de imóveis
+function renderProperties(properties, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.innerHTML = properties.map(property => `
+    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
+      <a href="property.html?id=${property.id}">
+        <img src="${property.images[0]}" alt="${property.title}" class="w-full h-48 object-cover">
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">${property.title}</h3>
+          <p class="text-primary font-bold mb-2">${formatPrice(property.price, property.type)}</p>
+          <p class="text-gray-600 mb-2">${property.neighborhood}</p>
+          <p class="text-gray-500 text-sm">${property.description.substring(0, 100)}...</p>
+        </div>
+      </a>
+    </div>
+  `).join('');
+}
+
+// Função para filtrar imóveis
+function filterProperties(filters) {
+  let results = [];
+  
+  // Se categoria específica foi selecionada, filtra por ela
+  if (filters.category && properties[filters.category]) {
+    results = properties[filters.category];
+  } else {
+    // Caso contrário, pega todos os imóveis de todas as categorias
+    results = Object.values(properties).flat();
+  }
+
+  // Aplica outros filtros
+  if (filters.type) {
+    results = results.filter(prop => prop.type === filters.type);
+  }
+  
+  if (filters.neighborhood) {
+    results = results.filter(prop => 
+      prop.neighborhood.toLowerCase().includes(filters.neighborhood.toLowerCase())
+    );
+  }
+  
+  if (filters.value) {
+    const [min, max] = filters.value.split('-');
+    if (max) {
+      results = results.filter(prop => 
+        prop.price >= parseInt(min) && prop.price <= parseInt(max)
+      );
+    } else {
+      results = results.filter(prop => prop.price >= parseInt(min));
+    }
+  }
+
+  return results;
+}
+
+// Função para carregar parâmetros da URL
+function getUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    category: params.get('category'),
+    type: params.get('type'),
+    neighborhood: params.get('bairro'),
+    value: params.get('valor')
+  };
+}
+
+// Função para mostrar detalhes do imóvel
+function showPropertyDetails() {
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'));
+  
+  if (!id) return;
+  
+  // Encontra o imóvel em todas as categorias
+  let property = null;
+  for (const category in properties) {
+    const found = properties[category].find(p => p.id === id);
+    if (found) {
+      property = found;
+      break;
+    }
+  }
+  
+  if (!property) return;
+  
+  // Atualiza a página com os dados do imóvel
+  document.getElementById('property-title').textContent = property.title;
+  document.getElementById('property-price').textContent = formatPrice(property.price, property.type);
+  document.getElementById('property-neighborhood').textContent = property.neighborhood;
+  document.getElementById('property-description').textContent = property.description;
+  
+  const mainImg = document.getElementById('gallery-main');
+  const thumbs = document.querySelectorAll('.gallery-thumb');
+  
+  if (property.images.length > 0) {
+    mainImg.src = property.images[0];
+    mainImg.alt = property.title;
+    
+    thumbs.forEach((thumb, index) => {
+      if (property.images[index + 1]) {
+        thumb.src = property.images[index + 1];
+        thumb.alt = property.title;
+        thumb.onclick = () => mainImg.src = property.images[index + 1];
+      } else {
+        thumb.style.display = 'none';
+      }
+    });
+  }
+}
+
+// Função para lidar com o formulário de busca
+function setupSearchForm() {
+  const form = document.getElementById('search-form');
+  if (!form) return;
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const params = new URLSearchParams();
+    
+    if (formData.get('tipo')) params.append('type', formData.get('tipo'));
+    if (formData.get('categoria')) params.append('category', formData.get('categoria'));
+    if (formData.get('bairro')) params.append('bairro', formData.get('bairro'));
+    if (formData.get('valor')) params.append('valor', formData.get('valor'));
+    
+    window.location.href = `listing.html?${params.toString()}`;
+  });
+}
+
+// Função para lidar com o formulário de upload
+function setupUploadForm() {
+  const form = document.getElementById('upload-form');
+  if (!form) return;
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const newProperty = {
+      id: Math.max(...Object.values(properties).flat().map(p => p.id)) + 1,
+      title: formData.get('title'),
+      type: formData.get('type'),
+      price: parseInt(formData.get('price')),
+      neighborhood: formData.get('neighborhood'),
+      description: formData.get('description'),
+      images: [
+        URL.createObjectURL(formData.get('image1')),
+        URL.createObjectURL(formData.get('image2'))
+      ]
+    };
+    
+    const category = formData.get('category');
+    if (properties[category]) {
+      properties[category].push(newProperty);
+      alert('Imóvel cadastrado com sucesso!');
+      form.reset();
+    } else {
+      alert('Categoria inválida');
+    }
+  });
+}
+
+// Inicialização da página
+document.addEventListener('DOMContentLoaded', () => {
+  // Página inicial - mostra destaques
+  if (document.getElementById('listings-container') && window.location.pathname.includes('index.html')) {
+    const featured = [
+      ...properties.apartamentos.slice(0, 3),
+      ...properties.casas.slice(0, 3),
+      ...properties.comerciais.slice(0, 2),
+      ...properties.terrenos.slice(0, 1),
+      ...properties.chacaras.slice(0, 1)
+    ];
+    renderProperties(featured, 'listings-container');
+  }
+  
+  // Página de listagem
+  if (document.getElementById('listings-container') && window.location.pathname.includes('listing.html')) {
+    const filters = getUrlParams();
+    const filteredProperties = filterProperties(filters);
+    
+    // Atualiza título da categoria se estiver filtrando por categoria
+    if (filters.category) {
+      const categoryTitle = document.getElementById('category-title');
+      if (categoryTitle) {
+        const categoryNames = {
+          apartamentos: 'Apartamentos',
+          casas: 'Casas',
+          comerciais: 'Imóveis Comerciais',
+          terrenos: 'Terrenos',
+          chacaras: 'Chácaras'
+        };
+        categoryTitle.textContent = categoryNames[filters.category] || 'Imóveis';
+      }
+    }
+    
+    renderProperties(filteredProperties, 'listings-container');
+  }
+  
+  // Página de detalhes do imóvel
+  if (window.location.pathname.includes('property.html')) {
+    showPropertyDetails();
+  }
+  
+  // Configura formulários
+  setupSearchForm();
+  setupUploadForm();
+});
