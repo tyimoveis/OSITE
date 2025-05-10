@@ -1,115 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Imóveis em Londrina - Ente Home</title>
-  <meta name="description" content="Encontre casas, apartamentos, terrenos e mais para venda ou aluguel em Londrina com Ente Home.">
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ente Home - Imóveis em Londrina</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Urbanist', 'sans-serif'] },
-          colors: { primary: '#3B82F6' }
-        }
-      }
-    }
-  </script>
-  <style>
-    .property-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    .gallery-thumb:hover {
-      opacity: 0.8;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="text-gray-900 font-sans bg-gray-50">
+<body class="bg-gray-100">
   <!-- Header -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="text-2xl font-bold text-primary">Ente Home</a>
-      <nav class="space-x-6 hidden md:block">
-        <a href="index.html" class="text-gray-700 hover:text-primary transition">Início</a>
-        <a href="upload-form.html" class="text-gray-700 hover:text-primary transition">Cadastrar</a>
+  <header class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-3xl font-bold text-blue-600">ENTE HOME</a>
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html" class="text-gray-700 hover:text-blue-600">Início</a>
+        <a href="listing.html" class="text-gray-700 hover:text-blue-600">Imóveis</a>
+        <a href="upload-form.html" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Cadastrar</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative h-[70vh] flex items-center justify-center bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1560185008-5b62b1b5e4c4?auto=format&fit=crop&w=1600&q=80');">
-    <div class="absolute inset-0 bg-black/50"></div>
-    <div class="relative z-10 w-full max-w-5xl px-4 text-center text-white">
+  <section class="relative h-96 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1560185008-5b62b1b5e4c4')] bg-cover bg-center">
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 text-center text-white px-4">
       <h1 class="text-4xl md:text-5xl font-bold mb-6">Encontre seu imóvel ideal</h1>
-      <p class="text-xl mb-8">Mais de 200 imóveis disponíveis em Londrina e região</p>
-    </div>
-  </section>
-
-  <!-- Filtro -->
-  <section class="max-w-6xl mx-auto px-4 py-12 -mt-16 relative z-20">
-    <div class="bg-white rounded-xl shadow-xl p-6">
-      <form id="search-form" class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <select name="tipo" class="border p-3 rounded-lg focus:ring-2 focus:ring-primary">
-          <option value="">Venda/Aluguel</option>
-          <option value="venda">Venda</option>
-          <option value="aluguel">Aluguel</option>
-        </select>
-        <select name="categoria" class="border p-3 rounded-lg focus:ring-2 focus:ring-primary">
-          <option value="">Todos Tipos</option>
-          <option value="apartamentos">Apartamento</option>
-          <option value="casas">Casa</option>
-          <option value="comerciais">Comercial</option>
-          <option value="terrenos">Terreno</option>
-        </select>
-        <input type="text" name="bairro" placeholder="Bairro" class="border p-3 rounded-lg focus:ring-2 focus:ring-primary">
-        <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold rounded-lg px-6 py-3 flex items-center justify-center gap-2">
-          🔍 Buscar
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Listagem -->
-  <section class="max-w-7xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-bold mb-8 text-center text-primary">Imóveis em Destaque</h2>
-    <div id="listings-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Imóveis carregados via JavaScript -->
-    </div>
-    <div class="text-center mt-12">
-      <a href="listing.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg px-8 py-4">
-        Ver Todos os Imóveis
+      <p class="text-xl mb-8">Mais de 200 propriedades disponíveis em Londrina e região</p>
+      <a href="listing.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg">
+        Ver Imóveis
       </a>
+    </div>
+  </section>
+
+  <!-- Listagem de Imóveis -->
+  <section class="container mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Imóveis em Destaque</h2>
+    <div id="listings-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Imóveis serão carregados aqui pelo JavaScript -->
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-gray-800 text-white py-12">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-xl font-bold mb-4">Ente Home</h3>
-          <p>A melhor plataforma de imóveis de Londrina e região.</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold mb-4">Links</h3>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="hover:text-primary">Início</a></li>
-            <li><a href="listing.html" class="hover:text-primary">Imóveis</a></li>
-            <li><a href="upload-form.html" class="hover:text-primary">Cadastrar</a></li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold mb-4">Contato</h3>
-          <p>contato@entehome.com</p>
-          <p>(43) 9999-9999</p>
-        </div>
-      </div>
-      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-        <p>© 2025 Ente Home. Todos os direitos reservados.</p>
-      </div>
+    <div class="container mx-auto px-6 text-center">
+      <p>© 2024 Ente Home. Todos os direitos reservados.</p>
     </div>
   </footer>
 
