@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastrar Imóvel - Ente Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Urbanist', 'sans-serif'] },
+          colors: { primary: '#3B82F6' }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="text-gray-900 font-sans bg-white">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="text-2xl font-bold text-primary">Ente Home</a>
+      <nav class="space-x-6 hidden md:block">
+        <a href="index.html" class="text-gray-700 hover:text-primary">Início</a>
+        <a href="listing.html?category=apartamentos" class="text-gray-700 hover:text-primary">Apartamentos</a>
+        <a href="listing.html?category=casas" class="text-gray-700 hover:text-primary">Casas</a>
+        <a href="listing.html?category=comerciais" class="text-gray-700 hover:text-primary">Comerciais</a>
+        <a href="listing.html?category=terrenos" class="text-gray-700 hover:text-primary">Terrenos</a>
+        <a href="listing.html?category=chacaras" class="text-gray-700 hover:text-primary">Chácaras</a>
+        <a href="upload-form.html" class="text-gray-700 hover:text-primary">Cadastrar</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Formulário -->
+  <section class="max-w-2xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold mb-6 text-primary">Cadastrar Imóvel</h1>
+    <form id="upload-form" class="space-y-4">
+      <input type="text" name="title" placeholder="Título do Imóvel" class="w-full p-3 border rounded-lg" required>
+      <select name="type" class="w-full p-3 border rounded-lg" required>
+        <option value="">Venda ou Aluguel</option>
+        <option value="venda">Venda</option>
+        <option value="aluguel">Aluguel</option>
+      </select>
+      <select name="category" class="w-full p-3 border rounded-lg" required>
+        <option value="">Categoria</option>
+        <option value="apartamentos">Apartamento</option>
+        <option value="casas">Casa</option>
+        <option value="comerciais">Comercial</option>
+        <option value="terrenos">Terreno</option>
+        <option value="chacaras">Chácara</option>
+      </select>
+      <input type="number" name="price" placeholder="Preço (R$)" class="w-full p-3 border rounded-lg" required>
+      <input type="text" name="neighborhood" placeholder="Bairro" class="w-full p-3 border rounded-lg" required>
+      <textarea name="description" placeholder="Descrição" class="w-full p-3 border rounded-lg" required></textarea>
+      <input type="file" name="image1" accept="image/*" class="w-full p-3 border rounded-lg" required>
+      <input type="file" name="image2" accept="image/*" class="w-full p-3 border rounded-lg" required>
+      <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-3">Cadastrar</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 border-t py-6 text-center text-sm text-gray-700">
+    <p>© 2025 Ente Home. Todos os direitos reservados.</p>
+    <div class="space-x-2 mt-2">
+      <a href="#" class="underline text-gray-600 hover:text-primary">Termos</a>
+      <a href="#" class="underline text-gray-600 hover:text-primary">Privacidade</a>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

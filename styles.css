@@ -1,0 +1,9 @@
+.gallery-thumb {
+  transition: opacity 0.3s;
+}
+.gallery-thumb:hover {
+  opacity: 0.8;
+}
+.gallery-main {
+  transition: src 0.3s;
+}
