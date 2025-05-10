@@ -3,58 +3,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Imóveis - Ente Home</title>
-  <meta name="description" content="Explore imóveis para venda e aluguel em Londrina.">
+  <title>Lista de Imóveis - Ente Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Urbanist', 'sans-serif'] },
-          colors: { primary: '#3B82F6' }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js"></script>
 </head>
-<body class="text-gray-900 font-sans bg-white">
+<body class="text-gray-900 font-sans bg-gray-50">
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <a href="index.html" class="text-2xl font-bold text-primary">Ente Home</a>
       <nav class="space-x-6 hidden md:block">
         <a href="index.html" class="text-gray-700 hover:text-primary transition">Início</a>
-        <a href="listing.html?category=apartamentos" class="text-gray-700 hover:text-primary transition">Apartamentos</a>
-        <a href="listing.html?category=casas" class="text-gray-700 hover:text-primary transition">Casas</a>
-        <a href="listing.html?category=comerciais" class="text-gray-700 hover:text-primary transition">Comerciais</a>
-        <a href="listing.html?category=terrenos" class="text-gray-700 hover:text-primary transition">Terrenos</a>
-        <a href="listing.html?category=chacaras" class="text-gray-700 hover:text-primary transition">Chácaras</a>
         <a href="upload-form.html" class="text-gray-700 hover:text-primary transition">Cadastrar</a>
       </nav>
     </div>
   </header>
 
   <!-- Listagem -->
-  <section class="max-w-7xl mx-auto px-4 py-16">
-    <h2 id="category-title" class="text-3xl font-bold mb-8 text-center text-primary">Imóveis</h2>
-    <div id="listings-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <h1 id="page-title" class="text-3xl font-bold mb-8 text-center text-primary">Todos os Imóveis</h1>
+    <div id="listings-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Imóveis carregados via JavaScript -->
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 border-t py-6 text-center text-sm text-gray-700">
-    <p>© 2025 Ente Home. Todos os direitos reservados.</p>
-    <div class="space-x-2 mt-2">
-      <a href="#" class="underline text-gray-600 hover:text-primary">Termos</a>
-      <a href="#" class="underline text-gray-600 hover:text-primary">Privacidade</a>
-    </div>
-    <div class="mt-4">
-      <a href="upload-form.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-3">Cadastrar Meu Imóvel</a>
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>© 2025 Ente Home. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script>
+    // Filtra imóveis baseado na URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get('category');
+      const type = params.get('type');
+      const bairro = params.get('bairro');
+      
+      // Atualiza título
+      if (category) {
+        const categoryNames = {
+          apartamentos: 'Apartamentos',
+          casas: 'Casas',
+          comerciais: 'Imóveis Comerciais',
+          terrenos: 'Terrenos'
+        };
+        document.getElementById('page-title').textContent = categoryNames[category] || 'Imóveis';
+      }
+      
+      // Filtra imóveis
+      let filtered = [];
+      if (category && properties[category]) {
+        filtered = properties[category];
+      } else {
+        filtered = [].concat(...Object.values(properties));
+      }
+      
+      if (type) {
+        filtered = filtered.filter(p => p.type === type);
+      }
+      
+      if (bairro) {
+        filtered = filtered.filter(p => 
+          p.neighborhood.toLowerCase().includes(bairro.toLowerCase())
+        );
+      }
+      
+      renderProperties(filtered, 'listings-container');
+    });
+  </script>
 </body>
 </html>
