@@ -4,73 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detalhes do Imóvel - Ente Home</title>
-  <meta name="description" content="Veja os detalhes deste imóvel em Londrina.">
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Urbanist', 'sans-serif'] },
-          colors: { primary: '#3B82F6' }
-        }
-      }
-    }
-  </script>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js"></script>
 </head>
-<body class="text-gray-900 font-sans bg-white">
+<body class="text-gray-900 font-sans bg-gray-50">
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <a href="index.html" class="text-2xl font-bold text-primary">Ente Home</a>
       <nav class="space-x-6 hidden md:block">
-        <a href="index.html" class="text-gray-700 hover:text-primary">Início</a>
-        <a href="listing.html?category=apartamentos" class="text-gray-700 hover:text-primary">Apartamentos</a>
-        <a href="listing.html?category=casas" class="text-gray-700 hover:text-primary">Casas</a>
-        <a href="listing.html?category=comerciais" class="text-gray-700 hover:text-primary">Comerciais</a>
-        <a href="listing.html?category=terrenos" class="text-gray-700 hover:text-primary">Terrenos</a>
-        <a href="listing.html?category=chacaras" class="text-gray-700 hover:text-primary">Chácaras</a>
-        <a href="upload-form.html" class="text-gray-700 hover:text-primary">Cadastrar</a>
+        <a href="index.html" class="text-gray-700 hover:text-primary transition">Início</a>
+        <a href="upload-form.html" class="text-gray-700 hover:text-primary transition">Cadastrar</a>
       </nav>
     </div>
   </header>
 
   <!-- Detalhes do Imóvel -->
-  <section class="max-w-7xl mx-auto px-4 py-16">
-    <h1 id="property-title" class="text-3xl font-bold mb-4 text-primary"></h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Galeria -->
-      <div id="property-gallery" class="relative">
-        <img id="gallery-main" src="" alt="" class="w-full h-96 object-cover rounded-lg">
-        <div class="flex gap-2 mt-2">
-          <img class="gallery-thumb w-24 h-24 object-cover rounded-lg cursor-pointer" src="" alt="">
-          <img class="gallery-thumb w-24 h-24 object-cover rounded-lg cursor-pointer" src="" alt="">
-        </div>
-      </div>
-      <!-- Informações -->
-      <div>
-        <p id="property-price" class="text-2xl font-semibold text-gray-700 mb-2"></p>
-        <p id="property-neighborhood" class="text-gray-700 mb-2"></p>
-        <p id="property-description" class="text-gray-500 mb-4"></p>
-        <a href="#" class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-3">Entrar em Contato</a>
-      </div>
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <div id="property-details" class="bg-white rounded-xl shadow-md overflow-hidden">
+      <!-- Conteúdo carregado via JavaScript -->
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 border-t py-6 text-center text-sm text-gray-700">
-    <p>© 2025 Ente Home. Todos os direitos reservados.</p>
-    <div class="space-x-2 mt-2">
-      <a href="#" class="underline text-gray-600 hover:text-primary">Termos</a>
-      <a href="#" class="underline text-gray-600 hover:text-primary">Privacidade</a>
-    </div>
-    <div class="mt-4">
-      <a href="upload-form.html" class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold rounded-lg px-6 py-3">Cadastrar Meu Imóvel</a>
+  <footer class="bg-gray-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>© 2025 Ente Home. Todos os direitos reservados.</p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+      
+      if (!id) return;
+      
+      // Encontra o imóvel em todas as categorias
+      let property = null;
+      for (const category in properties) {
+        const found = properties[category].find(p => p.id === id);
+        if (found) {
+          property = found;
+          break;
+        }
+      }
+      
+      if (!property) return;
+      
+      // Renderiza os detalhes
+      const container = document.getElementById('property-details');
+      container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="p-6">
+            <img src="${property.images[0]}" alt="${property.title}" class="w-full h-96 object-cover rounded-lg mb-4">
+            <div class="flex gap-2">
+              ${property.images.slice(1).map(img => `
+                <img src="${img}" alt="${property.title}" class="w-24 h-24 object-cover rounded-lg cursor-pointer gallery-thumb">
+              `).join('')}
+            </div>
+          </div>
+          <div class="p-6">
+            <h1 class="text-3xl font-bold mb-4">${property.title}</h1>
+            <p class="text-2xl text-primary font-bold mb-4">${formatPrice(property.price, property.type)}</p>
+            <p class="text-gray-700 mb-2"><strong>Bairro:</strong> ${property.neighborhood}</p>
+            <p class="text-gray-700 mb-2"><strong>Tipo:</strong> ${property.type === 'venda' ? 'Venda' : 'Aluguel'}</p>
+            <div class="mt-6">
+              <h3 class="text-xl font-semibold mb-2">Descrição</h3>
+              <p class="text-gray-600">${property.description}</p>
+            </div>
+            <button class="mt-8 bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">
+              Entrar em Contato
+            </button>
+          </div>
+        </div>
+      `;
+      
+      // Configura galeria de imagens
+      const mainImg = document.querySelector('#property-details img');
+      const thumbs = document.querySelectorAll('.gallery-thumb');
+      
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', () => {
+          mainImg.src = thumb.src;
+        });
+      });
+    });
+  </script>
 </body>
 </html>
